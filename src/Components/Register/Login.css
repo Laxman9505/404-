@@ -1,0 +1,60 @@
+.Login {
+  width: 40%;
+  height: auto;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  align-items: center;
+  justify-content: space-around;
+  transform: translate(-50%, -50%);
+  top: 65%;
+  left: 50%;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.Login form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+label {
+  color: #555;
+  margin: 10px;
+  font-size: 18px;
+}
+.input-field {
+  outline: none;
+  border: none;
+  margin: 10px;
+  background-color: rgb(247, 234, 214);
+  padding: 10px;
+  border-radius: 10px;
+  width: 90%;
+  font-size: 16px;
+}
+.submit-button {
+  width: 40%;
+  align-self: center;
+  padding: 15px;
+  margin-top: 15px;
+  height: 45px;
+  border-radius: 10px;
+  background-color: rgb(10, 141, 32);
+  color: rgb(248, 240, 240);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  border: 0;
+  justify-content: center;
+}
+p {
+  align-self: center;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #555;
+}
