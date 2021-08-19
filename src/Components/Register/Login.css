@@ -1,4 +1,22 @@
-.Login {
+.signup-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  background: url("../../images/home.jpg");
+  z-index: -1000000000000;
+}
+.signup-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -2;
+}
+.signup {
   width: 40%;
   height: auto;
   position: absolute;
@@ -8,11 +26,13 @@
   align-items: center;
   justify-content: space-around;
   transform: translate(-50%, -50%);
-  top: 65%;
+  top: 60%;
   left: 50%;
+  border-radius: 10px;
   box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset,
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+  background-color: white;
 }
 .Login form {
   display: flex;
@@ -57,4 +77,11 @@ p {
   margin-top: 15px;
   font-size: 16px;
   color: #555;
+}
+.error {
+  background: rgb(248, 75, 75);
+  color: #fff;
+  border-radius: 10px;
+  font-size: 18px;
+  padding: 5px 10px;
 }

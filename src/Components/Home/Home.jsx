@@ -17,21 +17,23 @@ export default function Home() {
   return (
     <div>
       <div className="home">
-        <div className="img-container">
-          <img src={homeImage} alt="" />
-        </div>
         <div className="home-content">
-          <h1>Smart Parking sytem</h1>
-          <p>
-            This is smart parking created by first year students of{" "}
-            <span>SOFTWARICA COLLEGE OF IT AND E-COMMERCE.</span>
-            It is just a prototype which really solves parking problem if scaled
-            in proper way. It contains basic functionality such as
-            <span ref={spanRef}> parking slot booking</span>
-          </p>
-          <Link to="/book" className="button">
-            <button type="button">Book</button>
-          </Link>
+          <div
+            className="home-inner"
+            style={{ zIndex: "1000000", opacity: "1" }}
+          >
+            <h1>Smart Parking sytem</h1>
+            <p>
+              This is smart parking created by first year students of{" "}
+              <span>SOFTWARICA COLLEGE OF IT AND E-COMMERCE.</span>
+              It is just a prototype which really solves parking problem if
+              scaled in proper way. It contains basic functionality such as
+              <span ref={spanRef}> parking slot booking</span>
+            </p>
+            <Link to="/book" className="button">
+              <button type="button">Book</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

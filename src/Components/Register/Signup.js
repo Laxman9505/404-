@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -10,7 +10,7 @@ export default function Signup() {
     username: "",
     password: "",
   });
-  console.log(data);
+  const [error, setError] = useState("");
 
   const nameChangeHandler = (e) => {
     setData((prevData) => ({
@@ -51,55 +51,55 @@ export default function Signup() {
         }
       );
       const resdata = await response.json();
-      console.log(resdata);
+      console.log("resdata", resdata);
+      {
+        resdata.error.code == 400 && setError(resdata.error.message);
+      }
     } catch (e) {
-      console.log("error", e);
+      console.log(e);
     }
   };
   return (
-    <div className="Login">
-      <h1>Signup</h1>
-      <form onSubmit={submitHandler}>
-        <label>Full Name</label>
-        <input
-          type="text"
-          placeholder="Full Name"
-          className="input-field"
-          onChange={nameChangeHandler}
-          required
-        />
-        <label>Vehicle Registration Number</label>
-        <input
-          type="text"
-          placeholder="Registration-Number"
-          onChange={regChangeHandler}
-          className="input-field"
-        />
-        <label>Username</label>
-        <input
-          type="text"
-          placeholder="Username"
-          onChange={usernameChangeHandler}
-          className="input-field"
-          required
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={passwordChangeHandler}
-          className="input-field"
-        />
-        <button className="submit-button" type="submit">
-          Submit
-        </button>
-        <p>
-          Already have an account?{" "}
-          <span>
-            <Link to="/login">Login</Link>
-          </span>
-        </p>
-      </form>
+    <div className="signup-container">
+      <div className="signup">
+        <h1>Signup</h1>
+        <form onSubmit={submitHandler}>
+          <label>Full Name</label>
+          <input
+            type="text"
+            placeholder="Full Name"
+            className="input-field"
+            onChange={nameChangeHandler}
+            required
+          />
+
+          <label>Username</label>
+          <input
+            type="text"
+            placeholder="Username"
+            onChange={usernameChangeHandler}
+            className="input-field"
+            required
+          />
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={passwordChangeHandler}
+            className="input-field"
+          />
+          {error && <p className="error">{error}</p>}
+          <button className="submit-button" type="submit">
+            Submit
+          </button>
+          <p>
+            Already have an account?{" "}
+            <span>
+              <Link to="/login">Login</Link>
+            </span>
+          </p>
+        </form>
+      </div>
     </div>
   );
 }

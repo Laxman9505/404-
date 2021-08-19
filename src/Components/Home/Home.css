@@ -7,36 +7,47 @@
   overflow: hidden;
   position: absolute;
 }
-.home .img-container {
-  margin-right: 4rem;
-  width: 100%;
 
-  flex: 110%;
+.home .home-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../../images/home2.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: 1000;
+  opacity: 0.5;
 }
-.home .img-container img {
-  width: 100%;
-  border-radius: 0rem 3rem 3rem 0rem;
-}
+
 .home .home-content {
+  background-color: black;
   display: flex;
-  flex-direction: column;
+
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   flex: 120%;
+  position: relative;
+}
+.home-inner {
+  width: 50%;
 }
 .home .home-content h1 {
   margin-bottom: 2rem;
   font-size: 3rem;
-  color: #284f8f;
+  color: #f46001;
   align-self: flex-start;
   text-transform: uppercase;
+  text-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
 }
 .home .home-content p {
-  color: crimson;
-  font-size: 1rem;
+  color: white;
+  font-size: 1.2rem;
 }
 .home .home-content p span {
-  color: #284f8f;
+  color: #f46001;
   font-size: 1.2rem;
 }
 .button {

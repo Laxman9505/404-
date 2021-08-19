@@ -3,10 +3,13 @@
   height: 100px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
     rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  padding: 0 30px;
+  z-index: 1000;
+  background-color: white;
 }
 
 .navigation .logo-container {
@@ -14,21 +17,19 @@
   width: 200px;
 }
 img {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  right: 3rem;
-}
-.navigation .nav-links {
-  transition: 1s;
+  width: 60%;
 }
 
 .navigation .nav-links ul {
   display: flex;
   justify-content: center;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   transition: 1s;
+}
+.navigation .nav-links ul li {
+  margin: 0 15px;
+  padding: 10px 0;
 }
 .navigation .nav-links ul li a {
   margin: 1rem;
@@ -36,12 +37,15 @@ img {
   color: #284f8f;
 }
 .navigation .nav-links ul li:hover {
-  transform: translateX(5px);
   transition: all 0.3s ease;
+  background-color: #f46001;
+  border-radius: 15px;
+
+  color: #fff;
 }
 
 .navigation .nav-links ul li a:hover {
-  color: crimson;
+  color: #fff;
 }
 
 .icon {
@@ -70,6 +74,7 @@ img {
     display: none;
     height: 100vh;
     width: 300px;
+    z-index: 100000000000000;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
       rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
@@ -81,7 +86,7 @@ img {
     display: block;
     transition: 1s;
     animation: nav;
-    animation-duration: 3s;
+    animation-duration: 2s;
   }
   .active ul {
     display: flex;
@@ -96,7 +101,7 @@ img {
   }
   .icon {
     display: block;
-    z-index: 100000;
+    z-index: 10000000000000000000000000000000000;
   }
   .navigation .logo-container {
     height: 60px;
