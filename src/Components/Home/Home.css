@@ -1,50 +1,57 @@
 .home {
   display: flex;
   justify-content: space-around;
-  height: 85%;
-  width: 100%;
+  min-height: 100%;
+  max-width: 100%;
 
   overflow: hidden;
-  position: absolute;
 }
-
-.home .home-content::before {
+.home-overlay {
+  position: absolute;
+  inset: 0;
+  min-height: 100%;
+  max-width: 100%;
+  z-index: -1111;
+}
+.home::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: url("../../images/home2.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  z-index: 1000;
-  opacity: 0.5;
+  inset: 0;
+  min-height: 100%;
+  max-width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: -100;
 }
 
 .home .home-content {
-  background-color: black;
   display: flex;
 
   align-items: center;
-  justify-content: flex-end;
-  flex: 120%;
+  justify-content: center;
+
   position: relative;
 }
 .home-inner {
-  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  margin-top: 7rem;
 }
 .home .home-content h1 {
   margin-bottom: 2rem;
   font-size: 3rem;
   color: #f46001;
-  align-self: flex-start;
+
   text-transform: uppercase;
   text-shadow: 0.1em 0.1em 0.5em rgba(0, 0, 0, 0.5);
 }
 .home .home-content p {
   color: white;
   font-size: 1.2rem;
+  text-align: justify;
+  font-weight: 600;
 }
 .home .home-content p span {
   color: #f46001;
@@ -52,26 +59,26 @@
 }
 .button {
   display: flex;
-  align-self: flex-start;
 }
 .home .home-content button {
   align-self: flex-start;
-  margin-top: 1rem;
-  font-family: "Fascinate Inline", cursive;
+  margin-top: 2rem;
+
   font-size: 4vmin;
 
   background: linear-gradient(to bottom, #f46001, #e14802);
   border: none;
   color: #fff;
-  border-radius: 2em;
-  padding: 0.6em 1.5em;
+
+  padding: 0.6em 2em;
   overflow: hidden;
   user-select: none;
   cursor: pointer;
   z-index: 1;
   box-shadow: 0 0 1em rgba(white, 0.2);
-  transition: transform 0.1s cubic-bezier(0.5, 0, 0.5, 1), box-shadow 0.2s;
+  transition: all 0.8s ease;
 }
 .home .home-content button:hover {
-  background: linear-gradient(to bottom, orange, #e14802);
+  background: rgb(8, 187, 8);
+  transition: all 0.8s ease;
 }

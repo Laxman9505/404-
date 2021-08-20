@@ -4,6 +4,7 @@ import "./Home.css";
 import { init } from "ityped";
 import Login from "../Login/Login";
 import { Link } from "react-router-dom";
+import homeOverlay from "../../images/home2.jpg";
 export default function Home() {
   const spanRef = useRef();
 
@@ -17,6 +18,7 @@ export default function Home() {
   return (
     <div>
       <div className="home">
+        <img src={homeOverlay} alt="" className="home-overlay" />
         <div className="home-content">
           <div
             className="home-inner"

@@ -10,22 +10,67 @@ import RoomIcon from "@material-ui/icons/Room";
 import Modal from "../UI/Modal";
 
 import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import { useRef } from "react";
+import { useEffect } from "react";
+import overlayImage from "../../images/book.jpg";
 
 export default function Book() {
+  const [userData, setUserData] = useState({
+    name: "",
+    regNo: "",
+    phoneNum: "",
+    destination: "",
+    time: "",
+  });
+  const [loactionInformation, setLocationInformation] = useState();
+  const [locationData, setLocationData] = useState();
+  const url = "https://smart-5c464-default-rtdb.firebaseio.com/book/";
   const [location, setLocation] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [items, setItems] = useState(data);
   const [selectedItem, setSelectedItem] = useState(null);
 
-  const iconHandler = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-    console.log(isDropdownOpen);
+  const postBookForm = async (e) => {
+    const { name, regNo, phoneNum, destination, time } = userData;
+
+    e.preventDefault();
+    const response = await fetch(`${url}${location}.json`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        regNo,
+        phoneNum,
+        destination: location,
+        time,
+      }),
+    });
   };
 
-  const handleItemClick = (id, label) => {
+  const getLocationInformation = async () => {
+    const response = await fetch(
+      `https://smart-5c464-default-rtdb.firebaseio.com/book.json`,
+      {
+        method: "GET",
+      }
+    );
+    const responseData = await response.json();
+    /* const { sinamangal, dillibazar, putalisadak, baneshor } = responseData; */
+    setLocationInformation(responseData);
+  };
+
+  const iconHandler = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleItemClick = async (id, label) => {
     selectedItem == id ? setSelectedItem(null) : setSelectedItem(id);
     iconHandler();
     setLocation(label);
+    await getLocationInformation();
+    await console.log(loactionInformation.sinamangal.length);
   };
   const markerpositons = [
     {
@@ -72,9 +117,18 @@ export default function Book() {
     setModalOpen(false);
   };
 
+  /*   useEffect(async () => {
+    const res = await fetch(url, {
+      method: "GET",
+    });
+    const response = await res.json();
+    console.log(response);
+  }, []);
+ */
   return (
     <div className="whole-book">
       <div className="book-inner">
+        <img src={overlayImage} alt="" className="overlay" />
         {isModalOpen && (
           <Modal className="ModalMap" closeModal={modalCloseHandler}>
             <h2>Please mark the Location you want</h2>
@@ -99,13 +153,29 @@ export default function Book() {
           </Modal>
         )}
         <div className="book-form">
-          <h2>Fill the Form</h2>
-          <form action="">
+          <h1>Fill the Form</h1>
+          <form action="" onSubmit={postBookForm}>
             <label htmlFor="Name">Name:</label>
-            <input type="text" placeholder="Enter Your Name" required />
+            <input
+              type="text"
+              placeholder="Enter Your Name"
+              required
+              value={userData.name}
+              onChange={(e) =>
+                setUserData({ ...userData, name: e.target.value })
+              }
+            />
 
-            <label htmlFor="Phone Number">Phone Number: </label>
-            <input type="number" required placeholder="Enter your number" />
+            <label htmlFor="Phone Number">Phone Number:</label>
+            <input
+              type="number"
+              required
+              placeholder="Enter your number"
+              value={userData.phoneNum}
+              onChange={(e) =>
+                setUserData({ ...userData, phoneNum: e.target.value })
+              }
+            />
             <label htmlFor="Vehicle Registeration Number">
               Vehicle Registeration Number:
             </label>
@@ -113,9 +183,21 @@ export default function Book() {
               type="text"
               placeholder="Enter your Vehicle number"
               required
+              value={userData.regNo}
+              onChange={(e) =>
+                setUserData({ ...userData, regNo: e.target.value })
+              }
             />
             <label htmlFor="Time"> Arrival Time: </label>
-            <input type="time" placeholder="Enter the time" required />
+            <input
+              type="time"
+              placeholder="Enter the time"
+              required
+              value={userData.time}
+              onChange={(e) =>
+                setUserData({ ...userData, time: e.target.value })
+              }
+            />
             <label htmlFor="Location"> Location : </label>
             <div className="location">
               <div className="drop-down">
@@ -134,14 +216,14 @@ export default function Book() {
                   {data.map((item) => {
                     const { id, label } = item;
                     return (
-                      <div key={id} onClick={() => handleItemClick(id, label)}>
+                      <p key={id} onClick={() => handleItemClick(id, label)}>
                         <span
                           className={`dot ${id == selectedItem && "active"}`}
                         >
                           •
                         </span>
                         {label}
-                      </div>
+                      </p>
                     );
                   })}
                 </div>
